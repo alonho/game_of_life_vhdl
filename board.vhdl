@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 package matrix_pkg is
-type matrix is array(0 to 10, 0 to 8) of integer range 0 to 1;
+type matrix is array(0 to 5, 0 to 5) of integer range 0 to 1;
 end package matrix_pkg;
 
 use work.matrix_pkg.all;
@@ -28,10 +28,10 @@ architecture arch of board is
 begin
   
 outer:
-  for i in 1 to 9 generate
+  for i in 1 to 4 generate
     begin
       inner:
-        for j in 1 to 7 generate
+        for j in 1 to 4 generate
           begin
             cell: entity work.cell port map
               (upper_left => mat(i - 1, j - 1),
