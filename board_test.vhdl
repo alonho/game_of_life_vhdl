@@ -15,8 +15,8 @@ architecture arch of board_test is
     variable l : line;  
   begin
     writeline (output, l);
-    for i in 10 downto 1 loop
-      for j in 10 downto 1 loop
+    for i in work.matrix_pkg.X downto 1 loop
+      for j in work.matrix_pkg.Y downto 1 loop
         write (l, mat(i,j));
       end loop;
       writeline (output, l);
