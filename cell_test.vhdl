@@ -8,7 +8,7 @@ architecture arch of cell_test is
       upper_left, upper, upper_right,
       left, right,
       lower_left, lower, lower_right : in integer range 0 to 1;
-      alive : inout  integer range 0 to 1
+      alive : inout integer range 0 to 1
     );
   end component;
   
@@ -38,7 +38,7 @@ architecture arch of cell_test is
     
       wait for 1 ns;
       assert alive = 1
-      report "cell should come to life" severity error;
+        report "cell should come to life" severity error;
     
       wait for 1 ns;
       assert alive = 1

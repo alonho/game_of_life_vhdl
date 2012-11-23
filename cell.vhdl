@@ -14,6 +14,7 @@ end cell;
 architecture arch of cell is
 begin
   
-  alive <= 1 when (upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 3 or (alive = 1 and (upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 2) else 0;
+  alive <= 1 when (upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 3
+               or (alive = 1 and (upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 2) else 0;
   
 end arch;
