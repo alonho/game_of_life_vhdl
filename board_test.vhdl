@@ -1,6 +1,8 @@
+library ieee;
+use std.textio.all;
+
 entity board_test is
 end board_test;
-use std.textio.all;
 
 architecture arch of board_test is
 
@@ -9,8 +11,9 @@ architecture arch of board_test is
     variable l : line;  
   begin
     writeline (output, l);
-    for i in work.matrix_pkg.X downto 1 loop
-      for j in work.matrix_pkg.Y downto 1 loop
+    for i in work.matrix_pkg.X downto 0 loop
+      for j in work.matrix_pkg.Y downto 0 loop
+        write (l, ' ');
         write (l, mat(i,j));
       end loop;
       writeline (output, l);
@@ -20,9 +23,9 @@ architecture arch of board_test is
 
   component board
     generic (
-      init_state : work.matrix_pkg.matrix := ((0, 0, 0, 0, 0),
-                                              (0, 0, 0, 0, 0),
-                                              (0, 1, 1, 1, 0),
+      init_state : work.matrix_pkg.matrix := ((0, 1, 0, 0, 0),
+                                              (0, 0, 1, 0, 0),
+                                              (1, 1, 1, 0, 0),
                                               (0, 0, 0, 0, 0),
                                               (0, 0, 0, 0, 0))
       );
@@ -43,7 +46,7 @@ architecture arch of board_test is
     process
     variable l: integer range 0 to 1;
     begin
-      for i in 1 to 5 loop
+      for i in 1 to 12 loop
         l := print_matrix(mat);
         clock <= 1 - clock;
         wait for 1 ns;
