@@ -11,6 +11,9 @@ end package matrix_pkg;
 use work.matrix_pkg.all;
 
 entity board is
+generic (
+  init_state : matrix
+);
 port (
   mat: inout matrix;
   clock: in integer range 0 to 1
@@ -20,6 +23,9 @@ end board;
 architecture arch of board is
 
   component cell
+    generic (
+      start_alive : integer range 0 to 1
+    );
     port (
       clock,
       upper_left, upper, upper_right,
@@ -37,7 +43,10 @@ outer:
       inner:
         for j in 1 to Y - 1 generate
           begin
-            cell: entity work.cell port map
+            cell: entity work.cell
+              generic map
+              (start_alive => init_state(i, j))
+              port map
               (clock => clock,
                upper_left => mat(i - 1, j - 1),
                upper => mat(i, j - 1),
