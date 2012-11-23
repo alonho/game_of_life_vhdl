@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use std.textio.all;
 
 entity cell is
 port (
@@ -16,6 +17,7 @@ architecture arch of cell is
 begin
 
   process (clock)
+    variable l : line; 
     begin
       if ((upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 3) or (alive = 1 and (upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 2) then
         alive <= 1;
