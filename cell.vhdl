@@ -21,8 +21,12 @@ begin
 
   process (clock)
     begin
-      if ((upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 3) or
-        (alive = 1 and (upper_left + upper + upper_right + left + right + lower_left + lower + lower_right) = 2) then
+      if ((upper_left + upper + upper_right +
+           left + right +
+           lower_left + lower + lower_right) = 3) or
+        (alive = 1 and (upper_left + upper + upper_right +
+                        left + right +
+                        lower_left + lower + lower_right) = 2) then
         alive <= 1;
       else
         alive <= 0;
