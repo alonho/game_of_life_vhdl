@@ -27,6 +27,8 @@ architecture arch of cell_test is
     
     process
     begin
+      clock <= 1 - clock;
+      wait for 1 ns;
       assert alive = 0
         report "cell should start as dead" severity error;
     
