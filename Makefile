@@ -1,4 +1,6 @@
 
+all: test
+
 cell:
 	ghdl -a cell.vhdl
 
@@ -14,7 +16,7 @@ board_test: board
 
 	ghdl -a board_test.vhdl
 
-test: 
+test: cell_test board_test 
 
 	ghdl -r cell_test
 	ghdl -r board_test
