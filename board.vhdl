@@ -1,23 +1,25 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
 package matrix_pkg is
-constant X: integer := 4;
-constant Y: integer := 4;
-type matrix is array(0 to X, 0 to Y) of integer range 0 to 1;
+  
+  constant X: integer := 4;
+  constant Y: integer := 4;
+  type matrix is array(0 to X, 0 to Y) of integer range 0 to 1;
+
 end package matrix_pkg;
 
 use work.matrix_pkg.all;
 
 entity board is
-generic (
-  init_state : matrix
-);
-port (
-  mat: inout matrix;
-  clock: in integer range 0 to 1
-  );
+  
+  generic (
+    init_state : matrix
+    );
+
+  port (
+    mat: inout matrix;
+    clock: in integer range 0 to 1
+    );
+  
 end board;
 
 architecture arch of board is
@@ -196,6 +198,6 @@ outer:
                lower_right => 0,
                alive => mat(i, j));
             end generate lower_right;
-      end generate inner;
-  end generate outer;
+        end generate inner;
+    end generate outer;
 end arch;

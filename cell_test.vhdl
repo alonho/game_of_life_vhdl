@@ -4,13 +4,18 @@ end cell_test;
 architecture arch of cell_test is
   
   component cell
-    port (
-      clock,
-      upper_left, upper, upper_right,
-      left, right,
-      lower_left, lower, lower_right : in integer range 0 to 1;
-      alive : inout integer range 0 to 1
+
+    generic (
+      start_alive : integer range 0 to 1 := 0
     );
+  
+    port (
+      clock, left, right,
+      upper_left, upper, upper_right,
+      lower_left, lower, lower_right : in integer range 0 to 1;
+      alive : inout integer range 0 to 1 := start_alive
+    );
+
   end component;
   
   for cell_1: cell use entity work.cell;
@@ -20,10 +25,10 @@ architecture arch of cell_test is
   
   begin
     cell_1: cell port map (
-      clock => clock,
-      left => left, right => right,
+      alive => alive, clock => clock, left => left, right => right,
       upper_left => upper_left, upper => upper, upper_right => upper_right,
-      lower_left => lower_left, lower => lower, lower_right => lower_right, alive => alive);
+      lower_left => lower_left, lower => lower, lower_right => lower_right
+      );
     
     process
     begin
